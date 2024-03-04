@@ -8,11 +8,11 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.zabalburu.alumnos</groupId>
-	<artifactId>Alumnos</artifactId>
+	<groupId>org.zabalburu</groupId>
+	<artifactId>Profesores</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-alumnos</name>
-	<description>Micro Servicio alumnos</description>
+	<name>ms-profesores</name>
+	<description>Micro Servicio Profesores</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
