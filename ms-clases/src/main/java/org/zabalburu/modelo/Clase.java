@@ -1,10 +1,15 @@
 package org.zabalburu.modelo;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,15 +31,14 @@ public class Clase {
 
     @Column(name = "profesor_id")
     private String profesorId;
-
-    @Column(name = "horario")
-    private String fechaInicio;
     
-    @Column(name = "fecha_final")
-    private String fechaFinal;
+    private String horario;
     
-    @Column(name = "tipo_id")
-    private String tipoId;
+    private Integer aula;
+    
+    @OneToMany(mappedBy = "clase")
+    @JsonIgnore
+    private List<InscripcionClase> inscripciones;
     
     
 }

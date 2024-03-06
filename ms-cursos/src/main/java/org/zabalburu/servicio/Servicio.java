@@ -19,7 +19,7 @@ import org.zabalburu.repo.CursosRepo;
 @Service
 public class Servicio {
 
-	private final String URL_PROFESORES  = "http://localhost:8091/profesores";	
+	private final String URL_PROFESORES  = "http://localhost:servicio-profesores/profesores";	
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -76,7 +76,19 @@ public class Servicio {
 		return CursoRepo.save(modificar);
 	}
 	
+	public List<Curso> getCursosByProfesor(Integer idProfesor) throws ProfesorNotFound{
+		try {
+			 restTemplate.getForObject(URL_PROFESORES + "/{id}", Object.class, idProfesor);
+			
+		} catch (RestClientException e) {
+			// TODO Auto-generated catch block
+			throw new ProfesorNotFound("El profesor con el id: " + idProfesor + " No Existe!");
+		}
+		return CursoRepo.findByProfesorId(idProfesor);
+	}
 	
+	
+	/* ========== Tipo Curso ========== */
 	
 	public List<TipoCurso> getTipoCurso() {
         return TipoCursoRepo.findAll();
@@ -102,5 +114,13 @@ public class Servicio {
 	
 	public TipoCurso modificarTipoCurso(TipoCurso modificar) {
 		return TipoCursoRepo.save(modificar);
+	}
+	
+	public List<Curso> getCursosByTipo(Integer idTipo){
+		TipoCurso tc = getTipoCurso(idTipo);
+		if(tc != null) {
+			return CursoRepo.findByTipo(tc);
+		}
+		return null;
 	}
 }

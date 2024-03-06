@@ -54,5 +54,7 @@ public class Alumno {
     
     private String pais;
     
+    private String imagen;
+    
 
 }

@@ -44,5 +44,5 @@ public class Curso {
     @JoinColumn(name = "tipo_id")
     private TipoCurso tipo;
     
- 
+    private String imagen;
 }

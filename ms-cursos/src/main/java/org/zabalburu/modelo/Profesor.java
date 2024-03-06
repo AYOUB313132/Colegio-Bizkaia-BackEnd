@@ -20,4 +20,5 @@ public class Profesor {
 	private String provincia;
 	private String pais;
 	private Integer role;
+	private String imagen;
 }

@@ -102,6 +102,25 @@ public class Controlador {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@GetMapping("/profesor/{id}")
+	public ResponseEntity<List<Curso>> getCursosByProfesor(@PathVariable Integer id) throws ProfesorNotFound{
+		List<Curso> cursos = servicio.getCursosByProfesor(id);
+		if(cursos != null) {
+			return ResponseEntity.ok(cursos);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("/tipo/{id}")
+	public ResponseEntity<List<Curso>> getCursosByTipo(@PathVariable Integer id){
+		List<Curso> cursos = servicio.getCursosByTipo(id);
+		if(cursos != null) {
+			return ResponseEntity.ok(cursos);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	/* ========== Tipo Cursos ========== */
+	
 	
 	@GetMapping("/tipo-cursos")
     public List<TipoCurso> getTipoCursos() {

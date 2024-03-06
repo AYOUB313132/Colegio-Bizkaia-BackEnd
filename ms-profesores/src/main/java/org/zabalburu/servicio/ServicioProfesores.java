@@ -9,7 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zabalburu.modelo.Profesor;
 import org.zabalburu.modelo.ProfesorDTO;
+import org.zabalburu.modelo.Role;
 import org.zabalburu.repo.ProfesoresRepo;
+import org.zabalburu.repo.RoleRepo;
 
 
 @Service
@@ -17,6 +19,10 @@ public class ServicioProfesores {
 	
 	@Autowired
 	private ProfesoresRepo repo;
+	
+	@Autowired
+	private RoleRepo roleRepo;
+	
 	public ProfesorDTO getProfesoresDTO(Integer numPagina){
 		PageRequest pg = PageRequest.of(numPagina, 3);
 		Page<Profesor> page = repo.findAll(pg);
@@ -47,6 +53,28 @@ public class ServicioProfesores {
 	public Profesor modificarProfesor(Profesor modificar) {
 		return repo.save(modificar);
 	}
+	
+	
+	/* ========== Role  */
+	
+	
+	public Role getRole(Integer id) {
+        return roleRepo.findById(id).orElse(null);
+    }
+	
+	public boolean modificarRole(Integer idProfesor, String role) {
+		Profesor p = getProfesor(idProfesor);
+		Role r = roleRepo.findByRoleName(role);
+		if(p != null && r != null) {
+			p.setRole(r);
+			return true;
+		}
+		return false;
+	}
+
+	
+	
+	
 }
 
 
